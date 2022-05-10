@@ -1,0 +1,4 @@
+Django==3.2.4
+docx==0.2.4
+python_docx==0.8.10
+python_magic==0.4.25

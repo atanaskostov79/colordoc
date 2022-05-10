@@ -24,8 +24,8 @@ def get_para_data(output_doc_name, paragraph):
 
 def colorfile(f):
     docOut = Document()
-    docIn = Document('media/documents/'+f.name) 
-    print(f.name)
+    docIn = Document('media/'+f) 
+    # print(f.name)
     for p in docIn.paragraphs: 
         paragraph = docOut.add_paragraph()
         # get_para_data(docOut,paragraph)
@@ -33,7 +33,7 @@ def colorfile(f):
             # runO.style = run.style
         
 
-            print(run.text, run.italic, run.bold)
+            # print(run.text, run.italic, run.bold)
             if run.italic: 
                 runO = paragraph.add_run(run.text)
                 runO.font.color.rgb = RGBColor(255, 0, 0)
@@ -61,14 +61,5 @@ def colorfile(f):
 
 
 
-        docOut.save('media/documents/out/'+f.name)
-
-
-def handle_uploaded_file(f):
-    print(f.name)
- 
-    # with open('media/documents/'+f.name, 'wb+') as destination:  
-    #     for chunk in f.chunks():  
-    #         df = destination.write(chunk)
-    #         print(df)
-    colorfile(f)  
+        docOut.save('media/out/'+f)
+    return 'media/out/'+f
