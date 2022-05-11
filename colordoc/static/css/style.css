@@ -1,0 +1,13 @@
+.row {
+    background-color: white;
+}
+
+.formRow {
+    text-align: center;
+}
+
+.form-group {
+    display: block;
+    max-width: 250px;
+    align-items: center;
+}
