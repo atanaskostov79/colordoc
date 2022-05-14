@@ -1,0 +1,32 @@
+{% extends 'main.html' %} {% block content %}
+<div class="container">
+
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center">Оцветяване на текст с ИИ</h1>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col"> </div>
+            <div class="col">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1"> Текст:</label>
+                        <textarea name="{{ form.text.name }}" class="form-control-file" id="exampleFormControlFile1" > </textarea> {{ form.text.errors }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Обработка с ИИ</button> {% if file %} <a href="/{{file}}" class="btn btn-success"> Свали от тук</a> {% endif %}
+                </form>
+                <div class="row" class="formRow">
+
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</div>  
+{% endblock %}

@@ -1,5 +1,7 @@
 from docx import Document
 from docx.shared import RGBColor
+import calendar
+import time
 
 def get_para_data(output_doc_name, paragraph):
     """
@@ -63,3 +65,30 @@ def colorfile(f):
 
         docOut.save('media/out/'+f)
     return 'media/out/'+f
+
+def textToDoc(string):
+    docOut = Document()
+
+    string = " " + string + " "
+    i = 0
+    paragraph = docOut.add_paragraph()
+    for a in string:
+        
+        if i > 0 and i < len(string)-1:
+            print(string[i], end='')
+            if (string[i].isupper()) == True and ((string[i+1].isupper()) == True or (string[i-1].isupper()) == True):
+                # print('R', end='')
+                runO = paragraph.add_run(a)
+                runO.font.color.rgb = RGBColor(255, 0, 0)
+            else:
+                runO = paragraph.add_run(a)
+                runO.font.color.rgb = RGBColor(0x00, 0x00, 0x00)
+                # print('N', end='')
+        i += 1
+    gmt = time.gmtime()
+
+    ts = calendar.timegm(gmt)
+    # print("timestamp:-", ts)
+    
+    docOut.save('media/out/'+ str(ts)+'.docx')     
+    return 'media/out/'+ str(ts) +'.docx'

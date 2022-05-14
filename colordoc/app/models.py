@@ -10,4 +10,7 @@ class Document(models.Model):
 
             validators=[FileExtensionValidator( ['doc', 'docx'] ) ])
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
+class TxtToDoc(models.Model):
+        text = models.TextField()
         
