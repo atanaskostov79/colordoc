@@ -1,4 +1,4 @@
- {% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} {% block content %}
 <div class="container">
 
 
@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">Оцветяване на doc</h1>
+            <h1 class="text-center">Оцветяване на документ с ИИ</h1>
         </div>
     </div>
     <div class="row">
@@ -15,19 +15,18 @@
         <div class="col">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="exampleInputEmail1">Описание</label>
                     <input type="text" name="{{ form.description.name }}" class="form-control" id="exampleInputEmail1" /> {{ form.description.errors }}
-                </div>
+                </div> -->
                 <div class="form-group">
-                    <label for="exampleFormControlFile1">Файл</label>
+                    <label for="exampleFormControlFile1">Качете файл (.doc или .docx) :</label>
                     <input type="file" name="{{ form.document.name }}" class="form-control-file" id="exampleFormControlFile1" /> {{ form.document.errors }}
                 </div>
-                <button type="submit" class="btn btn-primary">Обработка с ИИ</button>
+                <button type="submit" class="btn btn-primary">Обработка с ИИ</button> {% if file %} <a href="/{{file}}" class="btn btn-success"> Свали от тук</a> {% endif %}
             </form>
             <div class="row" class="formRow">
-                {% if file %}
-                <a href="/{{file}}"> Свали от тук</a> {% endif %}
+
             </div>
         </div>
         <div class="col"></div>

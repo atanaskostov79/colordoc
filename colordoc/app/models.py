@@ -5,7 +5,7 @@ from django.core.validators import FileExtensionValidator
 
 # validate_file = FileValidator(max_size=1024 * 100, content_types=('application/xml',))
 class Document(models.Model):
-    description = models.CharField(max_length=255, blank=True)
+#     description = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='documents/',
 
             validators=[FileExtensionValidator( ['doc', 'docx'] ) ])
