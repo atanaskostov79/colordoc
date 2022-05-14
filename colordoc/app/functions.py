@@ -2,7 +2,7 @@ from docx import Document
 from docx.shared import RGBColor
 import calendar
 import time
-
+import re
 def get_para_data(output_doc_name, paragraph):
     """
     Write the run to the new file and then set its font, bold, alignment, color etc. data.
@@ -70,20 +70,24 @@ def textToDoc(string):
     docOut = Document()
 
     string = " " + string + " "
+    string = re.sub('(?<![\r\n])(\r?\n|\n?\r)(?![\r\n])(?![\n\n])', ' ', string)
+    string = re.sub(r'[^\w\s]|(.)(?=\1)', '', string)
+    # string.replace("\n\n", "")
+    print(string)
     i = 0
     paragraph = docOut.add_paragraph()
     for a in string:
         
         if i > 0 and i < len(string)-1:
-            print(string[i], end='')
+            
             if (string[i].isupper()) == True and ((string[i+1].isupper()) == True or (string[i-1].isupper()) == True):
-                # print('R', end='')
-                runO = paragraph.add_run(a)
+                
+                runO = paragraph.add_run(a.replace('\n', ''))
                 runO.font.color.rgb = RGBColor(255, 0, 0)
             else:
-                runO = paragraph.add_run(a)
+                runO = paragraph.add_run(a.replace('\n', ''))
                 runO.font.color.rgb = RGBColor(0x00, 0x00, 0x00)
-                # print('N', end='')
+                
         i += 1
     gmt = time.gmtime()
 
